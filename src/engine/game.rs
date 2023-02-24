@@ -70,7 +70,11 @@ impl Game {
     }
 
     fn attack_cell(&mut self, (x1, y1): (usize, usize), (x2, y2): (usize, usize)) {
-        if self.board.cells[x2 + y2 * self.board.width].changed {
+        if self.board.cells[x2 + y2 * self.board.width].cell_type
+            == self.board.cells[x1 + y1 * self.board.width].cell_type
+            || self.board.cells[x1 + y1 * self.board.width].changed
+            || self.board.cells[x2 + y2 * self.board.width].changed
+        {
             return;
         }
 
